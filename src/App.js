@@ -1,12 +1,12 @@
-
-import Content from './Content.js'
+import { Route, Routes } from 'react-router-dom';
+import './App.css';
+import RouteApp from './routes';
 
 function App() {
-
   return (
-    <div className="App" style={{padding : 20}}>
-      <Content />
-    </div>
+    <Routes>
+      <Route path="*" element={<RouteApp />}></Route>
+    </Routes>
   );
 }
 
