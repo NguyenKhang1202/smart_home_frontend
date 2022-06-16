@@ -3,7 +3,8 @@ import './Login.css';
 import { Form, Input, Button, Checkbox, Row, Col, notification } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import { Link, useNavigate } from 'react-router-dom';
-import Axios from 'axios';
+// import Axios from 'axios';
+import axios from '../../api/axios';
 const backgroundImage = `/image/backgroundLogin.jpg`;
 const loginImage = `/image/img_login.jpeg`;
 
@@ -24,13 +25,16 @@ function Login() {
     const { username, password } = values;
 
     let data = {
-      email: username,
+      username: username,
       password: password,
     };
-    Axios.post(`https://627b6cfdb54fe6ee00878e5b.mockapi.io/auth/user/login`, data)
+    axios
+      .post(`/auth/user/login`, data)
       .then((res) => {
-        console.log('res ', res.data.accessToken);
-        localStorage.setItem('token', `Bearer ${res.data.accessToken}`);
+        console.log('res ', res.data);
+        let data = res.data.data;
+        localStorage.setItem('token', `Bearer ${data.token}`);
+        localStorage.setItem('userId', data.userId);
         notification.success({
           message: 'Log in successfully!',
           style: {

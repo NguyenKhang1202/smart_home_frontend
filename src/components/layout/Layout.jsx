@@ -64,6 +64,7 @@ function LayoutApp(props) {
           height: '100vh',
           position: 'fixed',
           left: 0,
+          zIndex: 2,
         }}
       >
         {/* <div className="logo" /> */}
@@ -78,16 +79,16 @@ function LayoutApp(props) {
           <Menu.Item key="/devices" icon={<DesktopOutlined />}>
             <NavLink to="/devices">Devices</NavLink>
           </Menu.Item>
-          {/*<Menu.Item key="/profile" icon={<UserOutlined />}>
-          <NavLink to="/profile">Profile</NavLink>
-        </Menu.Item>
-        <Menu.Item key="/test" icon={<SettingOutlined />}>
-          <NavLink to="/test">Test</NavLink>
-        </Menu.Item> */}
+          <Menu.Item key="/profile" icon={<UserOutlined />}>
+            <NavLink to="/profile">Profile</NavLink>
+          </Menu.Item>
+          <Menu.Item key="/test" icon={<SettingOutlined />}>
+            <NavLink to="/test">Test</NavLink>
+          </Menu.Item>
         </Menu>
       </Sider>
       <Layout className="site-layout">
-        <Header className="site-layout-background" style={{ padding: 0 }}>
+        <Header className="site-layout-background" style={{ padding: 0, position: 'sticky', top: 0, zIndex: 1 }}>
           <div
             style={{
               display: 'flex',

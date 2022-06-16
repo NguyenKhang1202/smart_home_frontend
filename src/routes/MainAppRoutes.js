@@ -6,8 +6,9 @@ import Loading from '../components/common/Loading';
 
 const Home = lazy(() => import('../components/home/Home'));
 const Room = lazy(() => import('../components/room/Rooms'));
+const DetailRoom = lazy(() => import('../components/room/detailRoom/DetailRoom'));
 const Device = lazy(() => import('../components/device/Devices'));
-
+const Profile = lazy(() => import('../components/profile/Profile'));
 function MainAppRoutes(props) {
   console.log('main app route');
   return (
@@ -15,8 +16,11 @@ function MainAppRoutes(props) {
       <Suspense fallback={<Loading />}>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/rooms" element={<Room />} />
+          <Route exact path="/home" element={<Home />} />
+          <Route path="/rooms" element={<Room />}></Route>
+          <Route path="/rooms/:id" element={<DetailRoom />} />
           <Route path="/devices" element={<Device />} />
+          <Route path="/profile" element={<Profile />} />
         </Routes>
       </Suspense>
     </LayoutApp>

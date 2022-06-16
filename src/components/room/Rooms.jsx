@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Col, Row } from 'antd';
 import Card from '@material-ui/core/Card';
@@ -9,6 +9,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 
 import { roomList, imageRoom } from '../../database/Rooms/Roomsconfig';
+// import axios from '../../api/axios';
 
 const useStyles = makeStyles({
   root: {
@@ -18,7 +19,7 @@ const useStyles = makeStyles({
   },
 });
 
-const renderRooms = (classes, navigate) => {
+function renderRooms(classes, navigate) {
   let rooms = roomList.map((room, index) => {
     return (
       <Col span={12} key={room.id}>
@@ -28,6 +29,7 @@ const renderRooms = (classes, navigate) => {
             navigate(`/rooms/${room.id}`);
           }}
         >
+          {/* Phần slide ảnh */}
           <CardActionArea>
             <CardMedia
               component="img"
@@ -47,11 +49,23 @@ const renderRooms = (classes, navigate) => {
     );
   });
   return rooms;
-};
+}
 
 function Room(props) {
   const classes = useStyles();
   const navigate = useNavigate();
+  // const [rooms, setRooms] = useState([]);
+  // useEffect(() => {
+  //   axios
+  //     .get('/api/v1/rooms')
+  //     .then((res) => {
+  //       console.log(res.data.data.rooms);
+  //       setRooms(res.data.data.rooms);
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // }, []);
 
   return (
     <div className="rooms">

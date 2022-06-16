@@ -1,7 +1,8 @@
 @import 'antd/dist/antd.css';
 
 .site-layout .site-layout-background {
-  background: #18ec42;
+  background: #000000;
+
 }
 [data-theme='dark'] .site-layout .site-layout-background {
   background: #141414;
