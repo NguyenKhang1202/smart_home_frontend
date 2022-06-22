@@ -1,27 +1,42 @@
+@import "ant-design-pro/dist/ant-design-pro.css";
 .body{
     background-color: rgb(255, 255, 255);
 }
+
+/* style cho Card component */
 .detail-room .ant-card{
     width: 92%;
     height: 100px;
     display: flex;
-    justify-content: start;
+    justify-content: center;
     align-items: center;
     border-radius: 20px;
-    padding-left: 5px;
 }
+.detail-room .list-switch {
+    height: 170px;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+
+}
+/* style cho Card body component */
 .detail-room .ant-card-body {
     padding: 5px;
 }
+
+/* style cho Switch component */
 .detail-room .ant-switch{
     margin-bottom: 10px;
     left: 22px;
     top: -18px;
 }
+
+/* style cho Card component phần cover */
 .detail-room .ant-card-cover{
     size: 60px;
     margin-top: 10px;
     margin-bottom: 10px ;
+    margin-left: -30px;
 }
 
 .detail-2 .ant-card{
@@ -29,7 +44,9 @@
     margin-left: 15px;
     justify-content: center;
 }
-
+.detail-2 {
+    margin-top: 0px;
+}
 .temp-3 .ant-card{
     width: 98%;
     margin-top: 15px;
@@ -37,7 +54,6 @@
 }
 
 .temp-3 {
-    margin-top: 50px
 }
 
 .detail-3 .ant-card{
@@ -81,10 +97,24 @@
     height: "160px",
 }
 
-.antd-pro-charts-pie-pie {
-    position: absolute;
-    left: -160px;
-    top: -10px;
+
+/* .antd-pro-charts-pie-pie .antd-pro-charts-pie-total {
+    height: 140px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column-reverse;
+}
+
+.antd-pro-charts-pie-chart {
+    position: relative;
+} */
+.pie-stat {
+    color: white;
+    font-size: 28px;
+}
+h4.pie-sub-title {
+    color: white !important;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -102,7 +132,7 @@
   }
 
   .antd-pro-charts-pie-total{
-    /* font-size: 20px; */
+    font-size: 20px;
   }
   .antd-pro-charts-pie-pie .antd-pro-charts-pie-total > h4 {
     
@@ -127,7 +157,6 @@
 .icon-lock{
     cursor: pointer;
     position: absolute;
-    left: 60px;
     bottom: 26px;
 }
 .title-detail{

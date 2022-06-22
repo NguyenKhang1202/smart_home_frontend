@@ -1,24 +1,25 @@
-import { CheckOutlined, CloseOutlined } from '@ant-design/icons';
+// import { CheckOutlined, CloseOutlined } from '@ant-design/icons';
 import { Card, Carousel, Col, notification, Row, Switch } from 'antd';
 import Meta from 'antd/lib/card/Meta';
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { deviceList, icon } from '../../../database/Devices/DevicesConfig';
-import './DetailRoom.css';
-
-import { CgSmartHomeRefrigerator } from 'react-icons/cg';
-import { FaLightbulb, FaTemperatureHigh, FaTemperatureLow } from 'react-icons/fa';
+// import { deviceList, icon } from '../../../database/Devices/DevicesConfig';
+// import { CgSmartHomeRefrigerator } from 'react-icons/cg';
+// import { FaLightbulb, FaTemperatureHigh, FaTemperatureLow } from 'react-icons/fa';
 import { SiApacheairflow } from 'react-icons/si';
 import { GiDroplets, GiLightBulb } from 'react-icons/gi';
-import { FaRegLightbulb, FaUserSecret, FaUserGraduate, FaUserNinja } from 'react-icons/fa';
+// import { FaRegLightbulb, FaUserSecret, FaUserGraduate, FaUserNinja } from 'react-icons/fa';
 import { ImPower } from 'react-icons/im';
 import { RiCharacterRecognitionFill } from 'react-icons/ri';
 import { AiFillCodeSandboxSquare } from 'react-icons/ai';
 import { TiDeviceDesktop } from 'react-icons/ti';
 import { BsFillLockFill, BsFillUnlockFill } from 'react-icons/bs';
+import { Pie } from 'ant-design-pro/lib/Charts';
+// import { light } from '@material-ui/core/styles/createPalette';
+import { Liquid } from '@ant-design/plots';
+
 import axios from '../../../api/axios';
-import { Pie, WaterWave } from 'ant-design-pro/lib/Charts';
-import { light } from '@material-ui/core/styles/createPalette';
+import './DetailRoom.css';
 
 const contentStyle = {
   height: '400px',
@@ -26,7 +27,19 @@ const contentStyle = {
   lineHeight: '160px',
   textAlign: 'center',
   borderRadius: 15,
-  // background: "#364d79",
+};
+
+const configLiquid = {
+  autoFill: false,
+  height: 150,
+  width: 150,
+  outline: {
+    border: 8,
+    distance: 8,
+  },
+  wave: {
+    length: 128,
+  },
 };
 
 // Với mỗi room sẽ gán các device cho nó
@@ -63,13 +76,16 @@ function DetailRoom(props) {
   }, []);
 
   // Update chart độ ẩm nhiệt độ từ sensor
-  // useEffect(() => {
-  //   axios.get('/api/v1/sensor').then((res) => {
-  //     console.log('data ', res.data);
-  //     setHumidity(res.data.humidityAir);
-  //     setTemperature(res.data.temperature);
-  //   });
-  // }, []);
+  useEffect(() => {
+    setInterval(() => {
+      axios.get('/api/v1/sensors').then((res) => {
+        console.log('data sensor : ', res.data.data.sensors);
+        const dataSensor = res.data.data.sensors;
+        setHumidity(dataSensor.humidityAir / 100);
+        setTemperature(dataSensor.temperature);
+      });
+    }, 3000);
+  }, []);
 
   // sự kiện click vào switch on/off mỗi phòng
   const onChange = (id, checked, event) => {
@@ -197,7 +213,7 @@ function DetailRoom(props) {
     <div className="detail-room">
       <Row>
         <Col span={16}>
-          <Row>
+          <Row className="list-switch">
             {/* Air Conditional */}
             <Col span={6}>
               {airCondition === undefined ? (
@@ -205,7 +221,6 @@ function DetailRoom(props) {
               ) : (
                 <Card
                   hoverable
-                  // cover={<CgSmartHomeRefrigerator size={50} />}
                   cover={
                     <SiApacheairflow
                       size={50}
@@ -224,34 +239,7 @@ function DetailRoom(props) {
                 </Card>
               )}
             </Col>
-            {/* <Col span={6}>
-                            <Card
-                                hoverable
-                                // cover={<FaTemperatureHigh size={50} />}
-                                cover={<FaRegLightbulb size={50} />}
-                            >
-                                <Switch
-                                    checkedChildren="on"
-                                    unCheckedChildren="off"
-                                    defaultChecked
-                                />
-                                <Meta title="Floor lamp" />
-                            </Card>
-                        </Col>
-                        <Col span={6}>
-                            <Card
-                                hoverable
-                                // cover={<SiApacheairflow size={50} />}
-                                cover={<FaLightbulb size={50} />}
-                            >
-                                <Switch
-                                    checkedChildren="on"
-                                    unCheckedChildren="off"
-                                    defaultChecked
-                                />
-                                <Meta title="Track light" />
-                            </Card>
-                        </Col> */}
+
             {/* lights */}
             {lights.map((item, index) => {
               return (
@@ -294,22 +282,10 @@ function DetailRoom(props) {
         {/* col-2 : phần chứa icon khóa + biểu đồ nhiệt độ + detail room */}
         <Col span={8}>
           <Row className="detail-2">
-            <Col span={8}>
-              {/* <Card hoverable cover={<GiDroplets size={50} />}>
-                                <div style={{ fontSize: 40 }}>20%</div>
-                            </Card> */}
-              <div style={{ textAlign: 'center' }}>
-                {/* {humidity === undefined ? '' : <WaterWave height={96} title="humidity" percent={humidity} />} */}
-                <WaterWave height={96} title="humidity" percent={humidity} />
-              </div>
+            <Col span={9} style={{ marginTop: 0, marginLeft: 5, marginRight: 10 }}>
+              <Liquid percent={humidity} {...configLiquid} />
             </Col>
-            <Col span={8} style={{ position: 'relative' }}>
-              {/* <Card
-                                hoverable
-                                // cover={<FaTemperatureLow size={50} />}
-                            > */}
-              {/* <div style={{ fontSize: 40 }}>30°C</div> */}
-
+            <Col span={9} style={{ backgroundColor: 'black' }}>
               {/* biểu đồ của nhiệt độ và độ ẩm */}
               {temperature === undefined ? (
                 ''
@@ -317,16 +293,14 @@ function DetailRoom(props) {
                 <Pie
                   color="#0041ff"
                   percent={temperature}
-                  subTitle="T°"
-                  // total="28°C"
+                  subTitle="Nhiệt độ"
                   total={temperature + '°C'}
-                  height={120}
-                  style={{ marginTop: 0 }}
+                  height={165}
                 />
               )}
             </Col>
             {/* icon khóa mở cửa */}
-            <Col span={8} style={{ position: 'relative' }}>
+            <Col span={5} style={{ position: 'relative' }}>
               {door === undefined ? (
                 ''
               ) : door.status !== 'off' ? (

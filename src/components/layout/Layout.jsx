@@ -116,7 +116,7 @@ function LayoutApp(props) {
           </div>
         </Header>
         <Content style={{ margin: '0 16px', marginLeft: `${marginLeft}px` }}>
-          <Breadcrumb style={{ margin: '16px 0' }}>
+          <Breadcrumb style={{ margin: '8px 0' }}>
             <Breadcrumb.Item> </Breadcrumb.Item>
             <Breadcrumb.Item></Breadcrumb.Item>
           </Breadcrumb>
