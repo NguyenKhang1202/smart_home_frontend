@@ -3,16 +3,8 @@ import ReactDOM from 'react-dom';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { IconButton } from '@material-ui/core';
 import { Layout, Menu, Breadcrumb, Avatar } from 'antd';
-import {
-  DesktopOutlined,
-  PieChartOutlined,
-  FileOutlined,
-  TeamOutlined,
-  UserOutlined,
-  HomeOutlined,
-  SettingOutlined,
-} from '@ant-design/icons';
-// import clsx from 'clsx';
+import { DesktopOutlined, FileOutlined, UserOutlined, HomeOutlined, SettingOutlined } from '@ant-design/icons';
+import { FlashAuto } from '@material-ui/icons';
 
 import './layout.css';
 const { Header, Content, Footer, Sider } = Layout;
@@ -78,6 +70,9 @@ function LayoutApp(props) {
           </Menu.Item>
           <Menu.Item key="/devices" icon={<DesktopOutlined />}>
             <NavLink to="/devices">Devices</NavLink>
+          </Menu.Item>
+          <Menu.Item key="/meter_powers" icon={<FlashAuto />}>
+            <NavLink to="/meter-power">Power Consumption</NavLink>
           </Menu.Item>
           <Menu.Item key="/profile" icon={<UserOutlined />}>
             <NavLink to="/profile">Profile</NavLink>

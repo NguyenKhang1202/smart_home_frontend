@@ -9,8 +9,9 @@ const Room = lazy(() => import('../components/room/Rooms'));
 const DetailRoom = lazy(() => import('../components/room/detailRoom/DetailRoom'));
 const Device = lazy(() => import('../components/device/Devices'));
 const Profile = lazy(() => import('../components/profile/Profile'));
+const MeterPower = lazy(() => import('../components/meterPower/MeterPower'));
+
 function MainAppRoutes(props) {
-  console.log('main app route');
   return (
     <LayoutApp>
       <Suspense fallback={<Loading />}>
@@ -21,6 +22,7 @@ function MainAppRoutes(props) {
           <Route path="/rooms/:id" element={<DetailRoom />} />
           <Route path="/devices" element={<Device />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/meter-power" element={<MeterPower />} />
         </Routes>
       </Suspense>
     </LayoutApp>
