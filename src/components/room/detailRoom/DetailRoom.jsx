@@ -1,21 +1,15 @@
-// import { CheckOutlined, CloseOutlined } from '@ant-design/icons';
 import { Card, Carousel, Col, notification, Row, Switch } from 'antd';
 import Meta from 'antd/lib/card/Meta';
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-// import { deviceList, icon } from '../../../database/Devices/DevicesConfig';
-// import { CgSmartHomeRefrigerator } from 'react-icons/cg';
-// import { FaLightbulb, FaTemperatureHigh, FaTemperatureLow } from 'react-icons/fa';
 import { SiApacheairflow } from 'react-icons/si';
 import { GiDroplets, GiLightBulb } from 'react-icons/gi';
-// import { FaRegLightbulb, FaUserSecret, FaUserGraduate, FaUserNinja } from 'react-icons/fa';
 import { ImPower } from 'react-icons/im';
 import { RiCharacterRecognitionFill } from 'react-icons/ri';
 import { AiFillCodeSandboxSquare } from 'react-icons/ai';
 import { TiDeviceDesktop } from 'react-icons/ti';
 import { BsFillLockFill, BsFillUnlockFill } from 'react-icons/bs';
 import { Pie } from 'ant-design-pro/lib/Charts';
-// import { light } from '@material-ui/core/styles/createPalette';
 import { Liquid } from '@ant-design/plots';
 
 import axios from '../../../api/axios';
