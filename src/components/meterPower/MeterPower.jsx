@@ -21,8 +21,10 @@ const MeterPower = () => {
     });
   }, []);
 
+  const listYear = [2021, 2022];
+  const listMonth = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'];
   // eslint-disable-next-line array-callback-return
-  const data = power.map((item, index) => {
+  const data = power.map((item) => {
     let obj = {
       Month: item.day || item._id,
       Power: item.activePower || item.totalActivePower,
@@ -82,7 +84,7 @@ const MeterPower = () => {
     setMonth(value);
   };
 
-  const onSubmit = (event) => {
+  const onSubmit = () => {
     if (filter === 'year') {
       axios.get(`/api/v1/meter-powers/MonthInYear/${year}`).then((res) => {
         console.log('res', res.data.data);
@@ -111,8 +113,13 @@ const MeterPower = () => {
             style={{ width: 160 }}
             filterOption={(input, option) => option.year.toLowerCase().includes(input.toLowerCase())}
           >
-            <Option value="2021">2021</Option>
-            <Option value="2022">2022</Option>
+            {listYear.map((item) => {
+              return (
+                <Option key={item} value={item}>
+                  {item}
+                </Option>
+              );
+            })}
           </Select>
         </Col>
         <Col span="4">
@@ -137,6 +144,16 @@ const MeterPower = () => {
             <Option value="10">10</Option>
             <Option value="11">11</Option>
             <Option value="12">12</Option>
+            {/* {listMonth.map((item) => {
+              if (item < 10) {
+                var month_data = '0' + item;
+              } else month_data = item;
+              return (
+                <Option key={item} value={item}>
+                  {month_data}
+                </Option>
+              );
+            })} */}
           </Select>
         </Col>
 

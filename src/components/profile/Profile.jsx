@@ -101,19 +101,14 @@ function Profile(props) {
             </Typography>
           </CardContent>
           <CardActions disableSpacing>
-            {/* <IconButton aria-label="add to favorites">
-              <FavoriteIcon />
-            </IconButton>
-            <IconButton aria-label="share">
-              <ShareIcon />
-            </IconButton> */}
+            {/* expand detail user */}
             <IconButton
               className={clsx(classes.expand, {
                 [classes.expandOpen]: expanded,
               })}
               onClick={handleExpandClick}
               aria-expanded={expanded}
-              aria-label="show more"
+              aria-label="Show more"
             >
               <ExpandMoreIcon />
             </IconButton>
